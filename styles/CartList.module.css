@@ -1,0 +1,34 @@
+.main {
+  /* border: 1px solid blue; */
+  width: 500px;
+  min-height: 300px;
+  max-height: 800px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.main > h1 {
+  width: 80%;
+  border: 1px solid black;
+  text-align: center;
+  background-color: white;
+  color: orange;
+  border-radius: 10px;
+  font-family: "Times New Roman", Times, serif;
+  transition: 0.5s;
+}
+
+.main > h1:hover {
+  background-color: orange;
+  color: white;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.submain {
+  overflow: auto;
+  padding-right: 5px;
+}

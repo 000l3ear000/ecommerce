@@ -1,0 +1,7 @@
+.root{
+    width: 800px;
+    justify-content: space-between;
+    padding: 10px;
+    display: flex;
+    border: 1px solid #000;
+}

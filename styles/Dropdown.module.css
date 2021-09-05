@@ -1,0 +1,31 @@
+.root{
+    border:1px solid black;
+    display: flex;
+    background-color: #E9763A;
+    color: white;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    height: 50px;
+    width: 300px;
+}
+
+.radio{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background-color: yellow;
+    color: black;
+    padding: 10px;
+}
+
+
+.perRadio{
+    background-color: orange;
+    margin-top: 10px;
+}
+
+.radio_none{
+    display: none;
+}

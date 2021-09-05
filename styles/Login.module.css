@@ -1,0 +1,86 @@
+.container{
+    padding-top: 150px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: initial;
+    align-items: center;
+    height: 100vh;
+    border: 1px solid red;
+    
+}
+.form>h1{
+    color: goldenrod;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.form{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 400px;
+    border: 2px solid lightgray;
+}
+
+.form>button{
+    width: 80px;
+    height: 40px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 2px;
+}
+
+.inputs{
+    width: 80%;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 10px;
+    
+}
+
+.home{
+    margin-top:150px;
+
+}
+
+
+.inputs>input::placeholder{
+    color: orange;
+    text-align: center;
+
+}
+
+.inputs>input{
+    height: 30px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid red ;
+}
+
+
+.inputs>input:focus{
+    transition: 0.8s;
+    outline: none !important;
+    border:1px solid red;
+
+}
+
+.img:hover{
+    cursor: pointer;
+}
+
+.inputs>span{
+    text-align: center;
+    color: red;
+    font-size: 12px;
+    font-weight: 800;
+    font-family: sans-serif;
+}

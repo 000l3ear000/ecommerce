@@ -1,0 +1,26 @@
+.root{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid blue;
+}
+
+.primary{
+    border: 1px solid red;
+    width: 70%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    align-items: flex-start;
+}
+.secondary{
+    border: 1px solid yellow;
+    width: 30%;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

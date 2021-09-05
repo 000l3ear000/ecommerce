@@ -1,0 +1,15 @@
+
+.root{
+    display:flex;
+    align-items:center;
+    width: 300px;
+    justify-content: space-evenly;
+}
+.root>input{
+    width:100px;
+    height:50px;
+}
+
+.root>input::placeholder{
+    text-align: center;
+}
