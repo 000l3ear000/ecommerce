@@ -1,0 +1,26 @@
+.root{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    width: 350px;
+    padding: 10px;  
+    height: 500px; 
+    background-color: #f96302;
+    color: white;
+}
+
+.root>button{
+    background-color: white;
+    border: 1px solid #f96302;
+    color: #f96302;
+    height: 30px;
+    margin-top: 10px;
+    
+}
+.root>button:hover{
+    background-color: #f96302;
+    scale: 0.92;
+    border: 1px solid white;
+    color: white;    
+}
+

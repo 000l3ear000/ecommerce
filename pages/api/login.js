@@ -16,7 +16,7 @@ const func = async ( req, res ) => {
         console.log(user)
         if ( user ){
             if(await bcrypt.compare(password,user.password)){
-                const token = jwt.sign({email:user.email,name:user.name},process.env.MY_SECRET,{expiresIn:60*60});
+                const token = jwt.sign({ email:user.email,name:user.name},process.env.MY_SECRET,{expiresIn:60*60});
                 res.status(201).json({ message: "success",token, name: user.name, email, id: user._id, address: user.address })
             }
             else{

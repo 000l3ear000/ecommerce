@@ -64,12 +64,15 @@ export default function Login() {
                 cookies.setItem("name",checkUserLogin.name, { expires: 1});
                 cookies.setItem("email",checkUserLogin.email, { expires: 1});
                 cookies.setItem("id",checkUserLogin.id, { expires: 1});
-                cookies.setItem("address",checkUserLogin.address, { expires: 1});
+                cookies.setItem("address",JSON.stringify(checkUserLogin.address), { expires: 1});
                 const data = new URLSearchParams(window.location.search)
                 if ( data.get("onCart") ){
                     console.log(data)
                     const _re = data.get("onCart")
                     router.push('/cart')
+                }
+                else if ( data.get("onPayment") ){
+                    router.push('/payment')
                 }
                 else{
                     router.push('/')

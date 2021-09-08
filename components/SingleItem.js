@@ -1,4 +1,4 @@
-import { LocalLaundryService } from '@material-ui/icons'
+
 import React,{useState,useEffect} from 'react'
 import styles from '../styles/SingleItem.module.css'
 
@@ -13,6 +13,8 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 export default function SingleItem({ item }) {
     
     const [productRating, setProductRating] = useState("");
+    
+
 
     useEffect(() => {
         const getRating = async () => {
@@ -98,15 +100,15 @@ export default function SingleItem({ item }) {
 
     const showRating = () => {
         const str = [];
-        if(productRating.rating){
+        if(productRating){
             const arr = productRating.rating.toString().split(".");
             console.log("THIS IS THE RATING ARRAY >>> ", arr);
             for( let i = 0; i != parseInt(arr[0])+1; i++ ){
                 if(arr.length>1 && parseInt(arr[0])===i){
-                    str.push(<StarHalfIcon style={{ color: "light green" }} />)
+                    str.push(<StarHalfIcon style={{ color: "#FFF13E" }} />)
                 }
                 else if(i != parseInt(arr[0])){
-                    str.push(<StarIcon style={{ color: "light green" }}/>)
+                    str.push(<StarIcon style={{ color: "#FFF13E" }}/>)
                 }
             }
             console.log("THIS IS THE RATING STRINGGG >>> ", str);
@@ -125,7 +127,7 @@ export default function SingleItem({ item }) {
                     <p><strong>{item.name}</strong> {item.description}</p>
                 </div>
                 <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-                    <span style={{display:'flex',alignItems:'center'}}>{ productRating.rating==0?<StarBorderIcon/>: showRating().map(e=>(e)) }({productRating.rating})</span><span>{`${productRating.purchased} Ratings`}</span>
+                    <span style={{display:'flex',alignItems:'center'}}>{ productRating?.rating==0?<StarBorderIcon/>: showRating().map(e=>(e)) }({productRating?.rating})</span><span>{`${productRating? productRating.purchased : "No"} Ratings`}</span>
                 </div>
                 <div className={styles.descc}>
                     <h1>{item.price}</h1>

@@ -26,7 +26,7 @@ function productDetails() {
 
         const oldData = JSON.parse(localStorage.getItem("cartItems"));
         console.log("This is data from local storage >>> ", oldData);
-        oldData.filter((e)=> {
+        oldData?.filter((e)=> {
             if(e._id == fetchedProduct._id){
                 console.log("going inside", e)
                 setdata(e)
@@ -40,6 +40,7 @@ function productDetails() {
 
     const images = ["https://picsum.photos/210", "https://picsum.photos/201", "https://picsum.photos/220", "https://picsum.photos/202", "https://picsum.photos/230"];
     var product_id = "";
+
     if(typeof window !=='undefined'){
         product_id = new URLSearchParams(window.location.search);
         product_id=product_id.get("_id");
@@ -65,17 +66,37 @@ function productDetails() {
     );
     };
     
+    var flag1=0;
 
     const cartUpdate = () => {
+        flag1=0;
+        const arr=[]
         setflag(!flag)
         setquantity(1)
         const oldData = JSON.parse(localStorage.getItem("cartItems"));
-        oldData.forEach( item => {
-            if ( item._id == fetchedProduct._id ){
-                item.cartQuantity += quantity;
+        if(oldData){
+            oldData.forEach( item => {
+                if ( item._id == fetchedProduct._id ){
+                    item.cartQuantity += quantity;
+                    flag1=1;
+                }
+            })
+            if(!flag1){
+                const newObj=fetchedProduct;
+                newObj['cartQuantity']=quantity;
+                oldData.push(newObj)
+                localStorage.setItem("cartItems", JSON.stringify(oldData));
+                return
             }
-        })
-        localStorage.setItem("cartItems", JSON.stringify(oldData));
+            localStorage.setItem("cartItems", JSON.stringify(oldData));
+        }
+        else{
+            const newObj=fetchedProduct;
+            newObj['cartQuantity']=quantity;
+            arr.push(newObj)
+            localStorage.setItem("cartItems", JSON.stringify(arr));
+            return
+        }
     }
 
 
@@ -89,10 +110,19 @@ function productDetails() {
         // console.log(e.target.innerHTML)
     }
 
-    const stockQty = fetchedProduct.quantity<20?fetchedProduct.quantity:19
-    const check = quantity <= stockQty-data.cartQuantity?false:true
+    var check=""
+    var stockQty=""
+    if(data.length!==0){
+        console.log("im not null")
+        stockQty = fetchedProduct.quantity<20?fetchedProduct.quantity:19
+        check = quantity <= stockQty-data.cartQuantity?false:true
+    }
+    else{
+        stockQty = fetchedProduct.quantity<20?fetchedProduct.quantity:19
+        check= quantity <= stockQty?false:true
+    }
 
-    console.log(data.cartQuantity)
+    console.log(fetchedProduct)
 
     return (
         <div className={styles.root} >
@@ -120,7 +150,7 @@ function productDetails() {
                         <span>Brand</span> <p className="p">First player</p>
                         </div>
                         <div className={styles.change}>
-                            <button className={styles.cn} disabled={quantity<2?true:false} onClick={fun}>-</button>
+                            <button className={quantity<2?styles.ch:styles.cn} disabled={quantity<2?true:false} onClick={fun}>-</button>
                                 <p className="p">{quantity}</p>    
                             <button className={check?styles.ch:styles.cn} disabled={check} onClick={fun}>+</button>
                         </div>

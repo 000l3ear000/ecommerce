@@ -140,10 +140,10 @@ export default function Home() {
   // rating: 4.2,
   // purchased: 42,
   // }).save()
+
   // const e = new Rating({
-  // productId: '61218779fbd1e83f1cb1ed33',
-  // comments: ["prbbbbxxo", "asdazzzzzzzsd"],
+  // productId: '61218779fbd1e83f1cb1ed34',
+  // comments: ["prbbbbxasdxo", "asdazasdzzzzzzsd"],
   // rating: 4.1,
-  // purchased: 67,
   // }).save()
   

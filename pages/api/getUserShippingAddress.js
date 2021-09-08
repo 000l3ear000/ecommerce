@@ -45,7 +45,7 @@ export default async function getUserShippingAddress ( req, res ) {
                     console.log("Response got from user address update >>> ", resp);
                     console.log(typeof resp._id,typeof user._id)
                     if(resp.email === user.email){
-                        res.status(200).json({ success: "saved"})
+                        res.status(200).json({ success: "saved", user })
                     }
                     else{
                         res.status(400).json({ error: "Something went wrong" })

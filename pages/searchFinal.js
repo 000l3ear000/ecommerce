@@ -129,14 +129,14 @@ function searchResult() {
     }
     return (
         <div className={styles.root}>
-            <div className={styles.secondary}>
-                { fetchedProducts.length>0? <Filter passPriceRange={setPriceRange} passFilters={getFilters} passBrands={brands} passCategories={categories}/> : <Filter passPriceRange={setPriceRange} passFilters={getFilters} passBrands={brands} passCategories={categories}/>  }
+            <div className={[styles.secondary, fetchedCategory.length>0?null:"skeleton"].join(' ')}>
+                { fetchedProducts.length>0? <Filter passPriceRange={setPriceRange} passFilters={getFilters} passBrands={brands} passCategories={categories}/> : null  }
                 {/* <Filter passFilters={getFilters} passCategories={categories}/> */}
             </div>
-            <div className={styles.primary}>
+            <div className={[styles.primary, fetchedProducts.length>0?null:"skeleton"].join(' ')}>
                 {fetchedProducts.length>0? fetchedProducts.map((product) => (
                         <SingleItem key={ product._id } item={ product } />
-                    )):<h1>No Item Found!</h1> }
+                    )):null }
             </div>
         </div>
     )

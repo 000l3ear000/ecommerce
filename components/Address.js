@@ -15,14 +15,15 @@ function Address({ value }) {
     const [Email, setEmail] = useState("")
     const [Err, setErr] = useState("")
     const [randomText, setRandomText] = useState("")
+    const router = useRouter();
 
     useEffect(() => {
         const shippingAddress = async () => {
             const response = await fetch("http://localhost:3000/api/getUserShippingAddress?userid=" + cookies.getItem("id"))
             const userShippingAddress = await response.json();
-            var data=""
+            var data = ""
             if ( userShippingAddress.success && userShippingAddress.address){
-                const { address,firstName,lastName,email } = userShippingAddress.address;
+                const { address, firstName, lastName, email } = userShippingAddress.address;
                 console.log("Address I GOT >>>", firstName);
                 setAddress(address);
                 setEmail(email);
@@ -48,7 +49,7 @@ function Address({ value }) {
     const [shippingCity, setShippingCity] = useState('Lahore');
     const [cities, setShippingCities] = useState(func());
     const [disabled, setDisabled] = useState(true);
-    const router = useRouter();
+    
     console.log("This is shipping data", shippingData);
     console.log("rerender")
     

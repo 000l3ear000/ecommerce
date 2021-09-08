@@ -21,7 +21,7 @@ export default function Items() {
         <>
         <div className={styles.heading}>
             <h1>For You</h1>
-            <div className={styles.single}>
+            <div className={[styles.single, topProducts.length>0?null:"skeleton"].join(' ')}>
                 { topProducts && topProducts.map( item => (
                     <SingleItem item={item} key={item._id}/>
                 ))}
