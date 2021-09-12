@@ -136,6 +136,7 @@
 }
 
 .skeleton{
+  border: 1px solid gray;
   opacity: .7;
   animation: skeleton-loading 1s linear infinite alternate;
 }

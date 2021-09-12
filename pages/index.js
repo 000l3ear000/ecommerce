@@ -1,12 +1,13 @@
 import Head from 'next/head'
 import Cara from '../components/Cara'
-import CategoriesUI from '../components/categories/categoriesUI'
+import CategoriesUI from '../components/Categories/CategoriesUI'
 import Items from '../components/Items/Items'
 import SearchBar from '../components/Search'
 import styles from '../styles/Home.module.css'
 
 // import dbConnection from '../helpers/dbConnection';
-// import Rating from '../models/Rating'
+// // import Rating from '../models/Rating'
+// import Category from '../models/Category'
 // dbConnection();
 
 export default function Home() {
@@ -141,9 +142,40 @@ export default function Home() {
   // purchased: 42,
   // }).save()
 
-  // const e = new Rating({
-  // productId: '61218779fbd1e83f1cb1ed34',
-  // comments: ["prbbbbxasdxo", "asdazasdzzzzzzsd"],
-  // rating: 4.1,
+  // const nm = new Category({
+  // name: 'electrical appliances',
+  // }).save()
+  // const ze = new Category({
+  // name: 'gaming stuff',
+  // }).save()
+  // const x = new Category({
+  // name: 'kitchen appliances',
+  // }).save()
+  // const f = new Category({
+  // name: 'bedroom stuff',
+  // }).save()
+  // const w = new Category({
+  // name: 'dining room stuff',
+  // }).save()
+  // const e = new Category({
+  // name: 'mobile phones',
+  // }).save()
+  // const q = new Category({
+  // name: 'laptops',
+  // }).save()
+  // const d = new Category({
+  // name: 'keyboards',
+  // }).save()
+  // const c = new Category({
+  // name: 'clothes',
+  // }).save()
+  // const v = new Category({
+  // name: 'jewellery',
+  // }).save()
+  // const b = new Category({
+  // name: 'hats',
+  // }).save()
+  // const a = new Category({
+  // name: 'meat',
   // }).save()
   

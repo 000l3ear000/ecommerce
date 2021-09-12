@@ -17,13 +17,15 @@ export default function Profile() {
 
   const handleChange = (event) => {
     if ( event.target.value === 'logout' ) {
-      cookies.setItem("jwt", "");
-      cookies.setItem("name", "");
-      cookies.setItem("email", "");
-      cookies.setItem("id", "");
-      cookies.setItem("address", "");
-      localStorage.clear();
-      router.push('/auth/login')
+      if(typeof window!='undefined'){
+        cookies.setItem("jwt", "");
+        cookies.setItem("name", "");
+        cookies.setItem("email", "");
+        cookies.setItem("id", "");
+        cookies.setItem("address", "");
+        localStorage.clear();
+        router.push('/auth/login')
+      }
     }
     else if(event.target.value==="myorders"){
       router.push("/myOrders")

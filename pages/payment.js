@@ -80,6 +80,7 @@ function payment() {
                 const checkOrderInsertion = await res.json();
                 if ( checkOrderInsertion.success ){
                     console.log("YAAAAYYYY WE GOT YOUR PAYMENT");
+                    localStorage.clear()
                     router.push('/thankyou')
                     // setOrderedProducts( checkOrderInsertion.order.orders );
                     // setUser( checkOrderInsertion.user );

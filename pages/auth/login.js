@@ -11,7 +11,6 @@ export default function Login() {
         const spd=cookies.getItem("jwt")
         if(spd){
             router.push('/');
-
         }
     },[])
 

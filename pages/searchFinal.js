@@ -5,8 +5,6 @@ import Filter from '../components/Filter';
 import { set } from 'mongoose';
 
 function searchResult() {
-
-    const [params, setparams] = useState([]);
     const [fetchedProducts, setFetchedProducts] = useState([]);
     const [fetchedCategory, setFetchedCategory] = useState([]);
     const [filters, setFilters] = useState("{}");
@@ -16,7 +14,7 @@ function searchResult() {
     const [sorted, setSorted] = useState([]);  
     const [toggle, settoggle] = useState(0);  
     const [toggle2, settoggle2] = useState(0);  
-      
+    const [toggle3, settoggle3] = useState(0);  
 
     var data1 = {};
     var data = "";
@@ -70,6 +68,10 @@ function searchResult() {
 
     useEffect(() => {
         //copying fetched products coming from api
+        
+        settoggle3(toggle3+1);
+        console.log("IM TOGGLE3", fetchedProducts)
+        
         setSorted(fetchedProducts)
     }, [fetchedProducts])
 
@@ -129,14 +131,14 @@ function searchResult() {
     }
     return (
         <div className={styles.root}>
-            <div className={[styles.secondary, fetchedCategory.length>0?null:"skeleton"].join(' ')}>
+            <div className={[styles.secondary, fetchedCategory.length>0?null:toggle3?null:"skeleton"].join(' ')}>
                 { fetchedProducts.length>0? <Filter passPriceRange={setPriceRange} passFilters={getFilters} passBrands={brands} passCategories={categories}/> : null  }
-                {/* <Filter passFilters={getFilters} passCategories={categories}/> */}
+                
             </div>
-            <div className={[styles.primary, fetchedProducts.length>0?null:"skeleton"].join(' ')}>
+            <div className={[styles.primary, fetchedProducts.length>0?null:toggle3?null:"skeleton"].join(' ')}>
                 {fetchedProducts.length>0? fetchedProducts.map((product) => (
                         <SingleItem key={ product._id } item={ product } />
-                    )):null }
+                    )) : toggle3 == 2 || fetchedProducts.length==0?<h4>No Items found!</h4> : null }
             </div>
         </div>
     )
