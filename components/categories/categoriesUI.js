@@ -34,13 +34,16 @@ const CategoriesUI = () => {
     
 
     return (
-        <div className={styles.wrapper}>
+        <>
+        <h1 style={{margin:"0px",padding:"0px"}}>Categories</h1>
+        <div className={[styles.wrapper,!categories.length>0?"skeleton":null].join(" ")}>
             { 
             categories.length>0?categories.map((item) =>(
                 <Percategory key={item._id} text={ item.name } />
-            )):<h1>NONE</h1>
+            )):<h1 style={{lineHeight: "490px"}}>Loading...</h1>
             }
         </div>
+        </>
     )
 }
 

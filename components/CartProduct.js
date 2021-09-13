@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react'
 import classes from '../styles/CartProduct.module.css'
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, StylesProvider } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
+import { useStoreActions } from 'easy-peasy';
 
 
 // import useStyles from './styles'
@@ -10,6 +11,7 @@ import { AddShoppingCart } from '@material-ui/icons';
 
 
 function CartProduct({ item,fun,func }) {
+    const toggle=useStoreActions((actions)=>actions.settoggle)
     const [quantity, setquantity] = useState(item.cartQuantity)
     // useEffect(() => {
         
@@ -27,6 +29,7 @@ function CartProduct({ item,fun,func }) {
                             func(!fun)
                         }
                         else{
+                            toggle()
                             data.splice((data.indexOf(element)),1)
                             console.log(data)
                             func(!fun)

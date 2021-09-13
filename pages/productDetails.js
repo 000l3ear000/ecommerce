@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import styles from '../styles/ProductDetails.module.css';
 import { Zoom } from "react-slideshow-image";
+import { useStore, useStoreActions } from 'easy-peasy'
 
 function productDetails() {
     const [ quantity, setquantity ] = useState(1);
     const [ fetchedProduct, setFetchedProduct ] = useState({});
     const [ data, setdata ] = useState([]);
     const [ flag, setflag ] = useState(0);
-
+    const toggle = useStoreActions((actions)=>actions.settoggle)
     
 
     useEffect(() => {
@@ -69,6 +70,7 @@ function productDetails() {
     var flag1=0;
 
     const cartUpdate = () => {
+        
         flag1=0;
         const arr=[]
         setflag(!flag)
@@ -86,15 +88,18 @@ function productDetails() {
                 newObj['cartQuantity']=quantity;
                 oldData.push(newObj)
                 localStorage.setItem("cartItems", JSON.stringify(oldData));
+                toggle();
                 return
             }
             localStorage.setItem("cartItems", JSON.stringify(oldData));
+            toggle();
         }
         else{
             const newObj=fetchedProduct;
             newObj['cartQuantity']=quantity;
             arr.push(newObj)
             localStorage.setItem("cartItems", JSON.stringify(arr));
+            toggle();
             return
         }
     }

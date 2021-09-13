@@ -9,10 +9,12 @@ toast.configure()
 import StarIcon from '@material-ui/icons/Star';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import { useStore, useStoreActions } from 'easy-peasy'
 
 export default function SingleItem({ item }) {
     
     const [productRating, setProductRating] = useState("");
+    const settoggle=useStoreActions((actions)=>actions.settoggle)
     
 
 
@@ -40,12 +42,16 @@ export default function SingleItem({ item }) {
         getRating();
     }, [])
 
+    
+    
+
     const [Q, setQ] = useState(0)
     // const fun=()=>{
         
     //     console.log(item)
     // }
     const addCart = () => {
+        settoggle()
         // localStorage.clear()
         const oldData = JSON.parse(localStorage.getItem("cartItems"));
         //
@@ -133,7 +139,7 @@ export default function SingleItem({ item }) {
                     <h1>{item.price}</h1>
                     <p>/ {item.q}</p>
                 </div>
-                <button onClick={addCart} value='btn' disabled={item.quantity!=Q?false:true} className={item.quantity!=Q?styles.btn:styles.btn2}>{item.quantity==Q?"OUT OF STOCK":"ADD TO CART"}</button>
+                <button onClick={()=>addCart()} value='btn' disabled={item.quantity!=Q?false:true} className={item.quantity!=Q?styles.btn:styles.btn2}>{item.quantity==Q?"OUT OF STOCK":"ADD TO CART"}</button>
                 {console.log(item.quantity,Q)}
             </div>
         </div>

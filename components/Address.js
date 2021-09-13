@@ -7,7 +7,7 @@ import styles from '../styles/Address.module.css'
 import { useRouter } from 'next/dist/client/router';
 
 
-function Address({ value }) {
+function Address({ value,toggle }) {
     
     const [Address, setAddress] = useState("")
     const [First, setFirst] = useState("")
@@ -193,7 +193,7 @@ function Address({ value }) {
                             )) }
                         </select>
                         <br /><br />
-                <Button disabled={!disabled} type="submit" onClick={onSubmit} variant="contained" color="secondary" >Proceed to payment</Button>
+                <Button disabled={!toggle || !disabled} type="submit" onClick={onSubmit} variant="contained" color="secondary" >Proceed to payment</Button>
             </form>
             <h1>Subtotal:- {value}</h1>
         </div>

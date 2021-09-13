@@ -10,20 +10,22 @@ import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography } from '
 import { Search, ShoppingCart } from '@material-ui/icons'
 import SearchBar from "./Search";
 import Profile from './Profile/Profile';
+import { useStoreState } from "easy-peasy";
 
 
 function Nav() {
     const [basket, setbasket] = useState(0)
     const [cookie1, setcookie] = useState("")
     const [toggle, settoggle] = useState(true)
-
+    const dd=useStoreState((state)=>state.toggle)
+    
     useEffect(()=>{
         setcookie(cookie.getItem("jwt"))
     },[])
     
-    setInterval(() => {
-        settoggle(!toggle)
-    }, 1500);
+    //setInterval(() => {
+     //   settoggle(!toggle)
+   // }, 1500);
 
 
     useEffect(() => {
@@ -31,7 +33,7 @@ function Nav() {
         if(data){
             setbasket(data.length)
         }
-    }, [toggle])
+    }, [dd])
 
 
     return (

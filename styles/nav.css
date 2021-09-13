@@ -6,7 +6,6 @@
     justify-content: initial;
     align-items: center;
     box-shadow: 0 4px 2px -2px lightgray;
-    
 }
 
 #top-orange{
@@ -28,8 +27,6 @@
 #greater-div{
     width: 80%;
     height: 170px;
-   
-    
     display: flex;
     flex-direction: column;
     justify-content: initial;
@@ -41,7 +38,6 @@
     height: 30px;
     justify-content: flex-end;
     align-items: center;
-    /* border: 1px solid red; */
 }
 #second-inner{
     display: flex;

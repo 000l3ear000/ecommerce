@@ -3,8 +3,9 @@ import { Grid, StylesProvider } from '@material-ui/core';
 import CartProduct from './CartProduct'
 import styles from '../styles/CartList.module.css'
 import { set } from 'mongoose';
+import { SettingsOverscanOutlined } from '@material-ui/icons';
 
-function CartList({fun}) {
+function CartList({fun,toggle,settoggle}) {
     const [cartItemList, setstate] = useState([]);
     const [change, setchange] = useState(true);
     const [subtotal, setsub] = useState(0);
@@ -24,10 +25,19 @@ function CartList({fun}) {
 
     }, [change])
 
+    useEffect(() => {
+        if(cartItemList?.length>0){
+            settoggle(1)
+        }
+        else{
+            settoggle(0)
+        }
+    }, [cartItemList])
     
     return (
         <>
-        {cartItemList?
+
+        {cartItemList?.length>0?
             <div className={styles.main}>
                 <div className={styles.submain}>
                     { cartItemList.map((item) => (

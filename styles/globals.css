@@ -176,6 +176,7 @@ a {
   justify-content: initial;
   align-items: center;
   box-shadow: 0 4px 2px -2px lightgray;
+  margin-bottom: 10px;
 }
 
 #top-orange {
