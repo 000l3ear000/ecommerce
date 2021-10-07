@@ -11,6 +11,7 @@ import { Search, ShoppingCart } from '@material-ui/icons'
 import SearchBar from "./Search";
 import Profile from './Profile/Profile';
 import { useStoreState } from "easy-peasy";
+import SelectInput from "@material-ui/core/Select/SelectInput";
 
 
 function Nav() {
@@ -18,14 +19,45 @@ function Nav() {
     const [cookie1, setcookie] = useState("")
     const [toggle, settoggle] = useState(true)
     const dd=useStoreState((state)=>state.toggle)
+    const [count, setcount] = useState(0)
     
+
+    const arr=[
+        "hello","saad","ppd","FREE DELIVERY Over one million items eligible."
+    ]
+    const [text, settext] = useState("FREE DELIVERY Over one million items eligible.")
+    const [counter, setCounter] = useState(0);
+
+    useEffect(() => {
+        let timer = setInterval(() => {
+                
+    
+            setCounter(counter => {
+                var updatedCounter = counter
+                if (updatedCounter === arr.length-1) {
+                    updatedCounter=0;
+                    // console.log(updatedCounter)
+                }
+                else{
+                    updatedCounter+=1
+                    // console.log(updatedCounter)
+                }
+                return updatedCounter;
+            }); // use callback function to set the state
+    
+        }, 3000);
+        
+    }, []);
+
+    useEffect(() => {
+        //console.log("objectobjectobjectobjectobjectobjectobjectobjectobjectobject")
+        settext(arr[counter])
+    }, [counter])
     useEffect(()=>{
         setcookie(cookie.getItem("jwt"))
     },[])
     
-    //setInterval(() => {
-     //   settoggle(!toggle)
-   // }, 1500);
+
 
 
     useEffect(() => {
@@ -40,7 +72,7 @@ function Nav() {
         <>
     <div id="container">
         <div id="top-orange">
-            <a href="https://google.com">FREE DELIVERY Over one million items eligible.</a>
+            <a href="https://google.com">{text}</a>
         </div>   
         <div id="greater-div">
             <div id="second-div">
@@ -56,8 +88,8 @@ function Nav() {
             </div>
             <div id="third-div">
                 <Link href="/">
-                    <a  id="third-logo">
-                        <Image src="/1.jpg" alt="img" width="108" height="108"/>
+                    <a id="third-logo">
+                        <img src="/1.png" alt="img" layout='fill'/>
                     </a>
                 </Link>
                 <div id='third-search'>

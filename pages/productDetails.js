@@ -2,8 +2,17 @@ import React, { useState, useEffect } from 'react'
 import styles from '../styles/ProductDetails.module.css';
 import { Zoom } from "react-slideshow-image";
 import { useStore, useStoreActions } from 'easy-peasy'
+import BasicTabs from '../components/ProductDetailTab';
 
 function productDetails() {
+
+    const review=[
+            {rating:4,name:'Saad',comment:'The product is legit',date:'28/6/20'},
+            {rating:3,name:'Osama',comment:'The product is legit',date:'21/6/20'},
+            {rating:5,name:'Khalid',comment:'The product is legit',date:'26/6/20'},
+            {rating:1,name:'Khan',comment:'The product is legit',date:'27/6/20'}
+        ]
+
     const [ quantity, setquantity ] = useState(1);
     const [ fetchedProduct, setFetchedProduct ] = useState({});
     const [ data, setdata ] = useState([]);
@@ -54,6 +63,8 @@ function productDetails() {
         scale: 1.4,
         arrows: true
       };
+
+    
       
     const Slideshow = () => {
     return (
@@ -163,8 +174,8 @@ function productDetails() {
                             <button disabled={ check } onClick={ ()=>cartUpdate() } className={check?styles.btn2:styles.btn}>{check?"OUT OF STOCK":"ADD TO CART"}</button>
                         </div>
                     </div>
-                    
                 </div>
+                    <BasicTabs review={review} desc="This description is comming from tabs"/>
             </div>
 
         </div>

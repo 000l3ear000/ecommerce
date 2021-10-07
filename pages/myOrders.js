@@ -2,11 +2,11 @@ import React, {useEffect,useState} from 'react'
 import cookies from 'js-cookies'
 import { useRouter } from 'next/router'
 import OrderTemp from '../components/OrderTemp';
-
+import { CircularProgress,Box } from '@mui/material';
 
 function myOrders() {
     const [Data, setData] = useState("")
-    const router=useRouter();
+    const router = useRouter();
     
     useEffect(() => {
         if(cookies.getItem('jwt')){
@@ -20,7 +20,7 @@ function myOrders() {
             .then(res=>res.json()).then(res=>setData(res))
         }
         else{
-            router.push('/auth/login')
+            router.push('/auth/login?onMyOrders=true')
         }
     }, [])
 
@@ -55,7 +55,10 @@ function myOrders() {
             
             {Data.data?.length>0?Data.data.map(element =>
                 (<OrderTemp key={element._id} data={element}/>)
-            ):<h1>No Orders Yet!</h1>}
+            ):(
+                <Box sx={{ display: 'flex' }}>
+                    <CircularProgress />
+                </Box>)}
         </div>
     )
 }

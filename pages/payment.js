@@ -5,15 +5,20 @@ import styles from '../styles/Payment.module.css'
 import  OrderedProducts  from '../components/OrderedProducts';
 import  UserShippingAddress  from '../components/UserShippingAddress';
 import {useStoreActions} from 'easy-peasy'
+import { baseUrl } from '../constants/baseUrl';
+import { CircularProgress,Box } from '@mui/material';
+
 
 function payment() {
     const router = useRouter()
     const [state, setstate] = useState("")
+    const [flag, setFlag] = useState(0)
     const [orderedProducts, setOrderedProducts] = useState([]);
     const [user, setUser] = useState({});
     const [subtotal, setSubtotal] = useState(0);
     const [paymentMethod, setPaymentMethod] = useState("");
     const settoggle=useStoreActions((actions)=>actions.settoggle)
+    const [emailSent, setEmailSent] = useState('');
 
     useEffect(() => {
         const arr=[]
@@ -98,7 +103,29 @@ function payment() {
                     console.log("YAAAAYYYY WE GOT YOUR PAYMENT");
                     localStorage.clear()
                     settoggle()
-                    router.push('/thankyou')
+                    setFlag(1);
+                    if( cookies.getItem('jwt') ){
+                        const response = await fetch(`${baseUrl}/api/emailVerification`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",                    
+                                "email": cookies.getItem('email'),
+                                "token": cookies.getItem('jwt'),
+                                "action": 'order confirm',
+                            },
+                        });
+                        const checkEmail = await response.json();
+                        if ( checkEmail.err === "hello" ){
+                            setEmailSent("Email sent for your order confirmation")
+                            setTimeout(()=>{
+                                router.push('/thankyou')
+                            },2000)
+                        }
+                        else{
+                            setEmailSent("Could Not Send Email",checkEmail.err)
+                        }
+                    }
+                    
                     // setOrderedProducts( checkOrderInsertion.order.orders );
                     // setUser( checkOrderInsertion.user );
 
@@ -117,7 +144,6 @@ function payment() {
     const handleChange =  (e) => {
 
         setPaymentMethod( e.target.value );
-
 
     };
     // <div className={ styles.orders__subtotal } ></div>
@@ -138,14 +164,22 @@ function payment() {
                     <div className="payment__method" >
                     {
                         (
-                            <form onChange={ (e) => handleChange(e) } >
-
-                                <input disabled={subtotal>5000?true:false} type="radio" name="payment" value="cash_on_delivery"/><span style={subtotal>5000?{textDecoration:"line-through"}:null}>Cash on delivery</span>
-                                
-                                <input type="radio" name="payment" value="card_payment" /><span>Card payment</span>
+                            <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
+                                <div style={{display:'flex',justifyContent:'center'}}>
+                                    <input onChange={ (e) => handleChange(e)} disabled={subtotal>5000?true:false} type="radio" name="payment" value="cash_on_delivery"/><span style={subtotal>5000?{textDecoration:"line-through"}:null}>Cash on delivery</span>
+                                    <input onChange={ (e) => handleChange(e)} type="radio" name="payment" value="card_payment" /><span>Card payment</span>
+                                </div>
                                 <h5 style={subtotal>5000?null:{display:"none"}}>Sorry you cannot use Cash On Delivery on amount greater than 5000 rupees</h5>
-                                <button onClick={(e)=>placeOrder(e)}>PlaceOrder</button>
-                            </form>
+                                {
+                                    flag ? (
+                                        <Box sx={{ display: 'flex' }}>
+                                            <CircularProgress />
+                                        </Box>
+                                    ) : (
+                                        <button disabled={!paymentMethod} onClick={(e)=>placeOrder(e)}>PlaceOrder</button>
+                                    )
+                                }
+                            </div>
                         ) 
                     }
                     </div>

@@ -5,6 +5,7 @@ import cookies from 'js-cookies';
 import func from './Cities'
 import styles from '../styles/Address.module.css'
 import { useRouter } from 'next/dist/client/router';
+import { CircularProgress,Box } from '@mui/material';
 
 
 function Address({ value,toggle }) {
@@ -15,6 +16,7 @@ function Address({ value,toggle }) {
     const [Email, setEmail] = useState("")
     const [Err, setErr] = useState("")
     const [randomText, setRandomText] = useState("")
+    const [flag, setFlag] = useState(0)
     const router = useRouter();
 
     useEffect(() => {
@@ -31,7 +33,9 @@ function Address({ value,toggle }) {
                 setLast(lastName);
             }
             else{
-                console.log("New User")
+                setEmail(()=>cookies.getItem('email'))
+                setFirst(()=>cookies.getItem('name').split(' ')[0])
+                setLast(()=>cookies.getItem('name').split(' ')[1])
             }
             // document.getElementById('sad').value=data;
 
@@ -102,7 +106,8 @@ function Address({ value,toggle }) {
     }
 
     const verification = async () => {
-        if(!disabled){            
+        if(!disabled){
+            setFlag(1)            
             console.log("I was here")
             const token = cookies.getItem("jwt");
             console.log("Token >>> ", token)
@@ -193,7 +198,15 @@ function Address({ value,toggle }) {
                             )) }
                         </select>
                         <br /><br />
-                <Button disabled={!toggle || !disabled} type="submit" onClick={onSubmit} variant="contained" color="secondary" >Proceed to payment</Button>
+                            {
+                                flag ? (
+                                    <Box sx={{ display: 'flex' }}>
+                                        <CircularProgress />
+                                    </Box>
+                                ):
+                                <Button disabled={!toggle || !disabled} type="submit" onClick={onSubmit} variant="contained" color="secondary" >Proceed to payment</Button>
+                            }
+                        
             </form>
             <h1>Subtotal:- {value}</h1>
         </div>

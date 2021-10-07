@@ -1,5 +1,3 @@
-
-
 .react-slideshow-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -135,21 +133,20 @@
   display: flex;
 }
 
-.skeleton{
+.skeleton {
   border: 1px solid gray;
-  opacity: .7;
+  opacity: 0.7;
   animation: skeleton-loading 1s linear infinite alternate;
 }
 
 @keyframes skeleton-loading {
-  0%{
-      background-color: hsl(200,20%,70%);
+  0% {
+    background-color: hsl(200, 20%, 70%);
   }
-  100%{
-      background-color: hsl(200,20%,95%);
+  100% {
+    background-color: hsl(200, 20%, 95%);
   }
 }
-
 
 html,
 body {
@@ -170,7 +167,7 @@ a {
 
 #container {
   width: 100%;
-  height: 200px;
+  height: 210px;
   display: flex;
   flex-direction: column;
   justify-content: initial;
@@ -260,8 +257,8 @@ a {
 
 #third-logo {
   /* border: 1px solid black; */
-  height: 100px;
-  width: 100px;
+  width: 180px;
+
 }
 #third-logo > img {
   object-fit: cover;
@@ -305,6 +302,7 @@ a {
 }
 
 .div-forth {
+  margin-top: 20px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;

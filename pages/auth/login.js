@@ -3,6 +3,7 @@ import  styles from '../../styles/Login.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { CircularProgress, Box } from '@mui/material';
 import cookies from "js-cookies"
 
 export default function Login() {
@@ -15,6 +16,7 @@ export default function Login() {
     },[])
 
     const [email, setemail] = useState("")
+    const [flag, setFlag] = useState(0)
     const [password, setpassword] = useState("")
     const [errEmail, setEemail] = useState("")
     const [errpassword, setEpassword] = useState("")
@@ -35,6 +37,7 @@ export default function Login() {
     
     }
     const loginUser = async (e) => {
+        setFlag(1);
         e.target.disabled=true
         e.target.style.backgroundColor="#ccc";
         e.preventDefault();
@@ -53,6 +56,7 @@ export default function Login() {
             const checkUserLogin = await userData.json()
             if ( checkUserLogin.error ){
                 setEpassword(checkUserLogin.error);
+                setFlag(0);
                 e.target.disabled=false;
                 e.target.style.backgroundColor="orange";
             }
@@ -73,6 +77,9 @@ export default function Login() {
                 else if ( data.get("onPayment") ){
                     router.push('/payment')
                 }
+                else if ( data.get("onMyOrders") ){
+                    router.push('/myOrders')
+                }
                 else{
                     router.push('/')
                 }
@@ -91,9 +98,14 @@ export default function Login() {
                 <h1>Login</h1>
                 <div className={styles.inputs}>
                     <input type="email" placeholder="Enter your email here" required onChange={(e)=>{setemail(e.target.value)}}></input><span className="email">{errEmail}</span>
-                    <input type="password" placeholder="Enter your password" maxLength="12" required onChange={(e)=>{setpassword(e.target.value)}}></input><span className="password">{errpassword}</span>
+                    <input type="password" placeholder="Enter your password"  required onChange={(e)=>{setpassword(e.target.value)}}></input><span className="password">{errpassword}</span>
                 </div>
-                <button onClick={(e)=>loginUser(e)} value="submit" type='button'>Login</button>
+               { flag ? (
+                        <Box sx={{ display: 'flex' }}>
+                            <CircularProgress />
+                        </Box>)
+                        :(<button onClick={(e)=>loginUser(e)} value="submit" type='button'>Login</button>)
+                }
                 <div>
                     <Link href="/reset"><a>Forgot password?</a></Link>
                 </div>
