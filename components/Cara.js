@@ -1,5 +1,7 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Zoom } from "react-slideshow-image";
+import styles from '../styles/ProductDetails.module.css';
 import Image from "next/image"
 
 
@@ -24,40 +26,53 @@ const responsive = {
 
 export default function Cara() {
 
+  const images = ["https://picsum.photos/210", "https://picsum.photos/201", "https://picsum.photos/220", "https://picsum.photos/202", "https://picsum.photos/230"];
 
-    return (
-    <Carousel
-        swipeable={true}
-        draggable={false}
-        showDots={true}
-        responsive={responsive}
-        ssr={true} // means to render carousel on server-side.
-        infinite={true}
-        autoPlay={true}
-        autoPlaySpeed={2000}
-        keyBoardControl={true}
-        customTransition="all .5"
-        transitionDuration={500}
-        containerClass="carousel-container"
-        dotListClass="custom-dot-list-style"
+  const zoomOutProperties = {
+      duration: 5000,
+      transitionDuration: 500,
+      infinite: true,
+      indicators: true,
+      scale: 1.4,
+      arrows: true
+    };
   
-    >
-        <div style={{width:"100%",textAlign:'center',height:"800px",lineHeight:"800px",paddingTop:"100px"}}> 
-          <img style={{width:"100%",height:"600px",objectFit:"cover",lineHeight:"800px"}} src="https://picsum.photos/1010"></img>
+  const styles = {
+
+    secondary: {
+      
+      border: '1px solid yellow',
+      width: '100%',
+      minWidth: '400px',
+      display: 'flex',
+      flexDirection: 'column',
+    },
+
+    slider: {
+      height: '500px',
+      width: '100%',
+      padding: '60px',
+    }
+
+  }
+
+  const Slideshow = () => {
+    return (
+        <div>
+          <Zoom {...zoomOutProperties}>
+              {images.map((each, index) => (
+                  <img key={index} style={{ width: "100%", height: '50%' }} src={each} />
+              ))}
+          </Zoom>
         </div>
-        <div style={{width:"100%",textAlign:'center',height:"800px",lineHeight:"800px",paddingTop:"100px"}}> 
-          <img style={{width:"100%",height:"600px",objectFit:"cover"}} src="https://picsum.photos/1000"></img>
+    );
+  };
+    return (
+        <div style={{ width: '70%', height: '300px', border: '2px solid yellow' }} >
+          <Slideshow/>
         </div>
-        <div style={{width:"100%",textAlign:'center',height:"800px",lineHeight:"800px",paddingTop:"100px"}}> 
-          <img style={{width:"100%",height:"600px",objectFit:"cover"}} src="https://picsum.photos/1020"></img>
-        </div>
-        <div style={{width:"100%",textAlign:'center',height:"800px",lineHeight:"800px",paddingTop:"100px"}}> 
-          <img style={{width:"100%",height:"600px",objectFit:"cover"}} src="https://picsum.photos/1030"></img>
-        </div>
-        <div style={{width:"100%",textAlign:'center',height:"800px",lineHeight:"800px",paddingTop:"100px"}}> 
-          <img style={{width:"100%",height:"600px",objectFit:"cover"}} src="https://picsum.photos/1050"></img>
-        </div>
-    </Carousel>
+     
+
     )
 }
 
