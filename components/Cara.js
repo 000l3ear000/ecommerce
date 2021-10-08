@@ -1,5 +1,7 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Zoom } from "react-slideshow-image";
+import styles from '../styles/ProductDetails.module.css';
 import Image from "next/image"
 import { Zoom } from "react-slideshow-image";
 import styles from '../styles/ProductDetails.module.css'
@@ -51,7 +53,9 @@ const Slideshow = () => {
 
 export default function Cara() {
 
+  const images = ["https://picsum.photos/210", "https://picsum.photos/201", "https://picsum.photos/220", "https://picsum.photos/202", "https://picsum.photos/230"];
 
+<<<<<<< HEAD
   return (
     <>
         <div style={{marginTop:'30px'}} >
@@ -60,6 +64,54 @@ export default function Cara() {
         
     </>
   )
+=======
+  const zoomOutProperties = {
+      duration: 5000,
+      transitionDuration: 500,
+      infinite: true,
+      indicators: true,
+      scale: 1.4,
+      arrows: true
+    };
+  
+  const styles = {
+
+    secondary: {
+      
+      border: '1px solid yellow',
+      width: '100%',
+      minWidth: '400px',
+      display: 'flex',
+      flexDirection: 'column',
+    },
+
+    slider: {
+      height: '500px',
+      width: '100%',
+      padding: '60px',
+    }
+
+  }
+
+  const Slideshow = () => {
+    return (
+        <div>
+          <Zoom {...zoomOutProperties}>
+              {images.map((each, index) => (
+                  <img key={index} style={{ width: "100%", height: '50%' }} src={each} />
+              ))}
+          </Zoom>
+        </div>
+    );
+  };
+    return (
+        <div style={{ width: '70%', height: '300px', border: '2px solid yellow' }} >
+          <Slideshow/>
+        </div>
+     
+
+    )
+>>>>>>> 536468155e018ef86aae54f7dad73ea96c782d9a
 }
 
 
