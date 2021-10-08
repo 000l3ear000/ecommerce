@@ -31,7 +31,7 @@ function OrderTemp({ data }) {
             : 
             { display: 'none' }} 
         >
-        hehehe
+        RATING HERE ....
         </div>
 
 
