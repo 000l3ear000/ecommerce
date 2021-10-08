@@ -87,18 +87,19 @@ function Nav() {
                 </div>
             </div>
             <div id="third-div">
-                <Link href="/">
-                    <a id="third-logo">
+                
+                    <a onClick={()=>window.location="/"} id="third-logo">
                         <img src="/1.png" alt="img" layout='fill'/>
                     </a>
-                </Link>
+                
                 <div id='third-search'>
                     <SearchBar/>
                     {/* <input placeholder="Search" type="text"></input>
                     <button><i className="fas fa-search"></i></button> */}
                 </div>
                 <div id='third-account'>
-                    {cookie1? <Profile />:
+                    {cookie1? <Profile />
+                    :
                     <Link href="/auth/signup">
                         <span className="item">
                             {  

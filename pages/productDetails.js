@@ -63,8 +63,6 @@ function productDetails() {
         scale: 1.4,
         arrows: true
       };
-
-    
       
     const Slideshow = () => {
     return (

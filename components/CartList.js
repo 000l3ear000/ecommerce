@@ -22,7 +22,6 @@ function CartList({fun,toggle,settoggle}) {
             setsub(subt)
             fun(subt)
         }
-
     }, [change])
 
     useEffect(() => {

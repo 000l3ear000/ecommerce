@@ -13,8 +13,6 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
   
 
-  // if(typeof window !== 'undefined')
-  // localStorage.clear()
   const arr=[1,2,3,4,5,6,7,8]
   
   return (
