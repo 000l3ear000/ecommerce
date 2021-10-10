@@ -4,9 +4,16 @@
     border: 1px solid #000;
     width: 350px;
     padding: 10px;  
-    height: 500px; 
+    height: 600px;
     background-color: #f96302;
     color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.hello{
+    color:#f96302;
+    background-color: white;
+    padding:5px;
 }
 
 .root>button{

@@ -5,6 +5,7 @@
     padding-top: 50px;
     height: 100vh;
     overflow: auto;
+    color:'white'
 }
 
 
@@ -16,3 +17,24 @@
     
 }
 
+.payment_method{
+    color: white;
+}
+
+.select{
+    border: 1px solid white;
+    padding:8px;
+    background-color: white;
+    color:#F96302;
+    font-weight: 600;
+    margin-bottom:20px;
+    transition: 0.7s;
+}
+.select>input{
+    margin-right:10px ;
+}
+.select:hover{
+    background-color:#F96302;
+    color:white;
+    transition: 0.7s;
+ }
