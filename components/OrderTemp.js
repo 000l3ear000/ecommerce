@@ -1,11 +1,58 @@
-import { display } from "@mui/system";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import styles from "../styles/OrderTemp.module.css";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import cookies from 'js-cookies';
+import { Rating } from "@material-ui/lab";
+import { Typography } from "@mui/material";
 
 function OrderTemp({ data }) {
 
   const [flag, setFlag] = useState(0);
+  const [name, setname] = useState("");
+  const [comment, setComment] = useState('')
+  console.log('mein render hua', data);
+  console.log('MEIN COMMENT KARRAHA HUN ', comment);
+  useEffect(() => {
+      setname(cookies.getItem("name"));
+    }, []);
+
+    
+    
+    const submit=(e)=>{
+        e.preventDefault();
+        console.log("Pressed")
+    }
+    
+    const RenderRating = (data) => {
+        
+        const [value, setValue] = useState(0);
+        useEffect(() => {
+            if ( value ) console.log("mein value hun", value);
+          }, [value])
+      console.log('mein data hun', data)
+      return (
+          <>
+            <Typography component="legend">Controlled</Typography>
+            <Rating
+                name="simple-controlled"
+                value={value}
+                onChange={(event, newValue) => {
+                    setValue(newValue);
+                }}
+                style={{ height: '30px' }}
+            />
+            <div style={{ display:'flex', flexDirection: 'column', border: '2px solid yellow', height: '500px', width: '100%' }} >
+                <h5>{ data.name }</h5>
+                <form onSubmit={submit}>
+                    <h5>{ name }</h5>
+                    <label htmlFor="">Your comment here ...</label>
+                    <textarea rows="6" value={comment} required cols="50" type="text" onChange={ (e) => setComment(e.target.value) } required placeholder="Enter your comment here" />
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>
+        </>
+      )
+  }
 
   return (
     <>
@@ -27,11 +74,28 @@ function OrderTemp({ data }) {
         </div>
         <div 
         style={
-            flag ? { display: 'flex', backgroundColor: 'lightblue', width: '900px', height: '300px', border: '2px solid white' } 
+            flag ? { display: 'flex', backgroundColor: 'lightblue', width: '900px', height: '600px', border: '2px solid white' } 
             : 
             { display: 'none' }} 
         >
-        RATING HERE ....
+        {/* RATING HERE... */}
+        {/* <Typography component="legend">Controlled</Typography>
+        <Rating
+            name="simple-controlled"
+            value={value}
+            onChange={(event, newValue) => {
+                setValue(newValue);
+            }}
+            style={{ height: '30px' }}
+        /> */}
+
+        {RenderRating(data.orders[0])}
+        {/* <Rating /> */}
+        {/* {
+            data?.orders.map( obj => (
+                <RenderRating data={obj} />
+            ))
+        } */}
         </div>
 
 
