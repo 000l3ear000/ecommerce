@@ -49,7 +49,7 @@ function myOrders() {
         }
     }, [Data])
 
-    console.log(Data.data)
+    // console.log(Data.data)
     return (
         <div c  lassName="skeleton" style={{display:"flex",flexDirection:"column",alignItems:'center',height:'100vh',overflow:'auto'}}> 
             

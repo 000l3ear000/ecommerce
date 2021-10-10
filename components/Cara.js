@@ -1,9 +1,7 @@
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Zoom } from "react-slideshow-image";
 import styles from '../styles/ProductDetails.module.css';
 import Image from "next/image"
-ndev
 
 
 const responsive = {
@@ -60,9 +58,7 @@ export default function Cara() {
         <div style={{marginTop:'30px'}} >
           <Slideshow />
         </div>
-        
+
     </>
   )
 }
-
-

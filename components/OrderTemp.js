@@ -1,11 +1,20 @@
-import { display } from "@mui/system";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import styles from "../styles/OrderTemp.module.css";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+
+import cookies from 'js-cookies';
+import { Rating } from "@material-ui/lab";
+import { Typography } from "@mui/material";
+import CommentnRating from "./Comment&Rating";
 
 function OrderTemp({ data }) {
 
   const [flag, setFlag] = useState(0);
+  const [name, setname] = useState("");
+  const [comment, setComment] = useState('')
+  console.log('mein render hua', data);
+  console.log('MEIN COMMENT KARRAHA HUN ', comment);
 
   return (
     <>
@@ -22,16 +31,22 @@ function OrderTemp({ data }) {
                 <p>{data._id}</p>
                 <p>{data.userId}</p>
                 <p>{data.status}</p>
-                <KeyboardArrowDownIcon className={ styles.dropIcon } onClick={() => flag ? setFlag(0) : setFlag(1)} />
+                {flag?<KeyboardArrowDownIcon className={ styles.dropIcon } onClick={() => flag ? setFlag(0) : setFlag(1)} />:<KeyboardArrowUpIcon className={ styles.dropIcon } onClick={() => flag ? setFlag(0) : setFlag(1)} />}
             </div>
         </div>
         <div 
         style={
-            flag ? { display: 'flex', backgroundColor: 'lightblue', width: '900px', height: '300px', border: '2px solid white' } 
+            flag ? { display: 'flex',flexDirection:'column', width: '900px', border: '2px solid white' } 
             : 
             { display: 'none' }} 
         >
-        RATING HERE ....
+            {
+                data.orders.map((e)=>{
+                    return(
+                        <CommentnRating key={e._id} data={e}/>      
+                    )
+                })
+            }
         </div>
 
 
@@ -40,3 +55,21 @@ function OrderTemp({ data }) {
 }
 
 export default OrderTemp;
+
+{/* RATING HERE... */}
+        {/* <Typography component="legend">Controlled</Typography>
+        <Rating
+            name="simple-controlled"
+            value={value}
+            onChange={(event, newValue) => {
+                setValue(newValue);
+            }}
+            style={{ height: '30px' }}
+        /> */}
+        {/* {RenderRating(data.orders[0])} */}
+        {/* <Rating /> */}
+        {/* {
+            data?.orders.map( obj => (
+                <RenderRating data={obj} />
+            ))
+        } */}
