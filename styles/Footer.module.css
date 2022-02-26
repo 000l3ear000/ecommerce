@@ -13,8 +13,9 @@
 .div1{
     width: 90%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
-    min-width: 650px;
+    /* min-width: 650px; */
     height: 100%;
 }
 
@@ -32,6 +33,7 @@
 
 .inner3{
     display: flex;
+    flex-wrap: wrap;
     margin-top: 3px;
 }
 

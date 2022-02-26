@@ -335,9 +335,56 @@ a {
   transition: 2s;
 }
 
-.div-forth > a:hover > #invisible-div {
+/* .div-forth > a:hover > #invisible-div {
   display: block;
   transition: 2s;
+} */
+
+@media screen and (max-width:1000px) {
+
+    /* #third-div{
+      width:'90%';
+    } */
+    #third-account{
+      display: none;
+    }
+    .div-forth{
+      display: none;
+    }
+    #second-div{
+      display:none;
+    }
+    #greater-div{
+      margin-top:50px;
+      width: 100%;
+    }
+    #third-account-smol{
+      display:block !important;
+    }
+    #third-logo>{
+      width: 50px !important;
+    }
+}
+
+@media screen and (max-width:700px) {
+
+  #third-search{
+    width:40% !important;
+  }
+  #third-search > input{
+    width:70% !important;
+  }
+
+}
+@media screen and (max-width:500px) {
+
+  #third-search{
+    display: none;
+  }
+
+}
+#third-account-smol{
+  display: none;
 }
 
 #invisible-div {

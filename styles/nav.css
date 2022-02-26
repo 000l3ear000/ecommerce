@@ -135,10 +135,10 @@
 }
 
 
-.div-forth>a:hover>#invisible-div{
+/* .div-forth>a:hover>#invisible-div{
     display: block;
     transition: 2s;
-}
+} */
 
 
 #invisible-div{
